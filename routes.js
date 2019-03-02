@@ -1,7 +1,10 @@
+// Global
 const HOME = "/";
+const UPLOAD = "/upload";
 
 const routes = {
-  home: HOME
+  home: HOME,
+  upload: UPLOAD
 };
 
 export default routes;
