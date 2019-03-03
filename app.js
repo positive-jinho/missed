@@ -6,6 +6,8 @@ import bodyParser from "body-parser";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
 import globalRouter from "./routers/globalRouter";
+import photoRouter from "./routers/photoRouter";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 app.set("view engine", "pug");
@@ -21,5 +23,7 @@ app.use("/static", express.static("static"));
 app.use(localsMiddleware);
 
 app.use(routes.home, globalRouter);
+app.use(routes.photo, photoRouter);
+app.use(routes.user, userRouter);
 
 export default app;

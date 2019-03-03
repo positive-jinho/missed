@@ -1,8 +1,18 @@
 header.header
-    a(href=routes.home)
-        h3 MISSED
+    h3 
+        a(href=routes.home) MISSED
+    
+    span
+        a(href=routes.search) Search
+
     ul
-        li 
-            a(href=routes.upload) Upload
-        li Profile
-        li Logout
+        if user.authentication
+            li
+                a(href=routes.upload) Upload
+            li
+                a(href=routes.profile) Profile
+            li Logout
+        else
+            li
+                a(href=routes.join) Join
+            li Login
