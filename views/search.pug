@@ -1,4 +1,12 @@
 extends layouts/main
+include mixins/photoBlock
 
 block content
-    h3 Search
+    h3 검색결과
+
+    each item in photos
+        +photoBlock({
+            id:item.id,
+            title:item.title,
+            fileUrl:item.fileUrl
+        })

@@ -1,0 +1,11 @@
+extends layouts/main
+
+block content
+    h3 로그인
+
+    form(method="post")
+        input(type="email", placeholder="이메일", name="email")
+        input(type="password", placeholder="비밀번호", name="password")
+        input(type='submit', value="로그인")
+
+    include partials/socialBtns

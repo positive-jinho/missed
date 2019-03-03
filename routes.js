@@ -31,7 +31,13 @@ const routes = {
   changePassword: CHANGE_PASSWORD,
   me: ME,
   photo: PHOTO,
-  photoDetail: PHOTO_DETAIL,
+  photoDetail: id => {
+    if (id) {
+      return `/photo/${id}`;
+    } else {
+      return PHOTO_DETAIL;
+    }
+  },
   uploadPhoto: UPLOAD_PHOTO,
   editPhoto: EDIT_PHOTO,
   deletePhoto: DELETE_PHOTO
