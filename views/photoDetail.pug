@@ -3,6 +3,10 @@ extends layouts/main
 block content
     h3 Photo Detail
 
-    img(src=photo.fileUrl)
+    img(src=`/${photo.fileUrl}`)
     h5=photo.title
     
+    span
+        a(href=routes.editPhoto(photo.id)) 수정
+    span
+        a(href=routes.deletePhoto(photo.id)) 삭제

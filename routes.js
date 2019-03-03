@@ -38,9 +38,21 @@ const routes = {
       return PHOTO_DETAIL;
     }
   },
-  uploadPhoto: UPLOAD_PHOTO,
-  editPhoto: EDIT_PHOTO,
-  deletePhoto: DELETE_PHOTO
+  editPhoto: id => {
+    if (id) {
+      return `/photo/${id}/edit`;
+    } else {
+      return EDIT_PHOTO;
+    }
+  },
+  deletePhoto: id => {
+    if (id) {
+      return `/photo/${id}/delete`;
+    } else {
+      return DELETE_PHOTO;
+    }
+  },
+  uploadPhoto: UPLOAD_PHOTO
 };
 
 export default routes;

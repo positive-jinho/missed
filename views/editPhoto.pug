@@ -3,7 +3,7 @@ extends layouts/main
 block content
     h3 Edit Photo
 
-    form(method="post", action="")
-        img(src=photo.fileUrl)
-        input(type="text", value=photo.title)
+    form.form(method="post", action=routes.editPhoto(photo.id))
+        img(src=`/${photo.fileUrl}`)
+        input(type="text", name="title", value=photo.title)
         input(type="submit", value="수정")

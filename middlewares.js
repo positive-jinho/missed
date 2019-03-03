@@ -11,7 +11,7 @@ export const localsMiddleware = (req, res, next) => {
     name: "장진호",
     bio: "🚀🚀🚀🚀",
     avatar: "https://avatars0.githubusercontent.com/u/45239217?s=460&v=4",
-    authentication: true
+    authentication: false
   };
 
   next();

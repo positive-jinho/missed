@@ -3,7 +3,7 @@ extends layouts/main
 block content
     h3 프로필 수정
 
-    form(method="post", action="")
+    form.form(method="post", action="")
         img(src=user.avatar)
         input(type="file", accept="image/*")
         h5=user.name

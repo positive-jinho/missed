@@ -3,7 +3,7 @@ extends layouts/main
 block content
     h3 올리기
 
-    form(method="post", action="")
-        input(type="file", accept="image/*")
-        input(type="text", placeholder="작품 제목")
+    form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
+        input(type="file", accept="image/*", name="photoFile")
+        input(type="text", name="title", placeholder="작품 제목")
         input(type="submit", value="올리기")
