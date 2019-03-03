@@ -7,11 +7,15 @@ const photoSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    required: "File URL is required"
+    required: "Title is required"
   },
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 

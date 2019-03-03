@@ -3,9 +3,8 @@ extends layouts/main
 block content
     h3 프로필 수정
 
-    form.form(method="post", action="")
-        img(src=user.avatar)
-        input(type="file", accept="image/*")
-        h5=user.name
-        input(type="text", value=user.bio)
+    form.form(method="post", action=routes.user+routes.editProfile, enctype="multipart/form-data")
+        h5=loggedUser.name
+        input(type="file", accept="image/*", name="avatarFile")
+        input(type="text", value=loggedUser.bio, name="bio")
         input(type="submit", value="수정하기")

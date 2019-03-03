@@ -3,10 +3,10 @@ extends layouts/main
 block content
     h3 회원가입
 
-    form.form(method="post")
+    form.form(method="post", action=routes.join)
         input(type="text", placeholder="이름", name="name")
         input(type="email", placeholder="이메일", name="email")
-        input(type="password", placeholder="비밀번호", name="password1")
+        input(type="password", placeholder="비밀번호", name="password")
         input(type="password", placeholder="비밀번호 확인", name="password2")
         input(type='submit', value="회원가입")
 

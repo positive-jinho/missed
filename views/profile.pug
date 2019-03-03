@@ -3,12 +3,12 @@ extends layouts/main
 block content
     h3 프로필
 
-    img(src=user.avatar)
+    img(src=`/${user.avatarUrl}`)
     h5=user.name
     h5=user.bio
 
-    span
-        a(href=routes.user+routes.editProfile) 프로필 수정
-
-    span
-        a(href=routes.user+routes.changePassword) 비밀번호 변경
+    if loggedUser && loggedUser.id === user.id
+        span
+            a(href=routes.user+routes.editProfile) 프로필 수정
+        span
+            a(href=routes.user+routes.changePassword) 비밀번호 변경

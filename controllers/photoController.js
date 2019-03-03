@@ -1,5 +1,5 @@
 import routes from "../routes";
-import Photo from "../models/Photos";
+import Photo from "../models/Photo";
 
 export const home = async (req, res) => {
   try {

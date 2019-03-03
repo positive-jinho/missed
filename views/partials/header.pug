@@ -7,12 +7,13 @@ header.header
 
     .header__column
         ul
-            if user.authentication
+            if loggedUser
+                li
+                    a(href=routes.user+routes.me) #{loggedUser.name}
                 li
                     a(href=routes.photo+routes.uploadPhoto) 올리기
                 li
-                    a(href=routes.user+routes.me) 프로필
-                li 로그아웃
+                    a(href=routes.logout) 로그아웃
             else
                 li
                     a(href=routes.join) 회원가입

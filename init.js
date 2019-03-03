@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import "./db";
 import app from "./app";
+import "./models/User";
+import "./models/Photo";
 
 dotenv.config();
 

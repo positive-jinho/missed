@@ -3,7 +3,7 @@ extends layouts/main
 block content
     h3 로그인
 
-    form.form(method="post")
+    form.form(method="post", action=routes.login)
         input(type="email", placeholder="이메일", name="email")
         input(type="password", placeholder="비밀번호", name="password")
         input(type='submit', value="로그인")
