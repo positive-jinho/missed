@@ -1,5 +1,11 @@
 mixin photoBlock(photo = {})
     .photoBlock
         a(href=routes.photoDetail(photo.id))
-            img.photoBlock__thumbnail(src=photo.fileUrl)
-            h4.photoBlock__title=photo.title
+            .photoBlock__info
+                span=photo.title
+                | /
+                span=photo.creator
+                | /
+                span 🖤
+
+        img.photoBlock__thumbnail(src=photo.fileUrl)

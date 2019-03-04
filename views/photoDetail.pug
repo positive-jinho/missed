@@ -1,13 +1,14 @@
 extends layouts/main
 
 block content
-    h3 Photo Detail
-
     .photo-detail
+        h2=photo.title
         img(src=`/${photo.fileUrl}`)
-        h5=photo.title
+        h5
+            a(href=routes.user+'/'+photo.creator.id)=photo.creator.name
         
-        span
-            a(href=routes.editPhoto(photo.id)) 수정
-        span
-            a(href=routes.deletePhoto(photo.id)) 삭제
+        if loggedUser && loggedUser.id === photo.creator.id
+            span
+                a(href=routes.editPhoto(photo.id)) 수정
+            span
+                a(href=routes.deletePhoto(photo.id)) 삭제

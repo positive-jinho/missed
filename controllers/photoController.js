@@ -2,13 +2,28 @@ import routes from "../routes";
 import Photo from "../models/Photo";
 
 export const home = async (req, res) => {
+  let gridPhotos = [[], [], []];
+
   try {
-    const photos = await Photo.find().sort({ _id: -1 });
-    res.render("home", { page: "Home", photos });
+    const photos = await Photo.find()
+      .sort({ _id: -1 })
+      .populate("creator");
+
+    let columns = 0;
+
+    photos.forEach(photo => {
+      gridPhotos[columns].push(photo);
+      columns++;
+
+      if (columns === 3) {
+        columns = 0;
+      }
+    });
   } catch (e) {
     console.log(e);
-    res.render("home", { page: "Home", photos: [] });
   }
+
+  res.render("home", { page: "Home", photos: gridPhotos });
 };
 
 export const search = (req, res) => res.render("search", { page: "Search" });
@@ -19,7 +34,7 @@ export const photoDetail = async (req, res) => {
   } = req;
 
   try {
-    const photo = await Photo.findById(id);
+    const photo = await Photo.findById(id).populate("creator");
     res.render("photoDetail", { page: "PhotoDetail", photo });
   } catch (e) {
     console.log(e);
@@ -37,8 +52,12 @@ export const postUploadPhoto = async (req, res) => {
 
   const newPhoto = await Photo.create({
     fileUrl: path,
-    title
+    title,
+    creator: req.user.id
   });
+
+  req.user.photos.push(newPhoto.id);
+  req.user.save();
 
   res.redirect(routes.photoDetail(newPhoto.id));
 };
