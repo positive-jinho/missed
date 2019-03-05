@@ -1,14 +1,42 @@
 extends layouts/main
+include mixins/photoBlock
 
 block content
-    h3 프로필
+    .profile-container
+        img.profile__img(src=`/${user.avatarUrl}`)
+        span.profile__name=user.name
+        
+        if loggedUser && loggedUser.id === user.id
+            .profile__btn-container
+                a(href=routes.user+routes.editProfile) 
+                    Button.profile__btn ✏ 프로필 수정
+                a(href=routes.user+routes.changePassword)
+                    Button.profile__btn 🔐 비밀번호 변경
 
-    img(src=`/${user.avatarUrl}`)
-    h5=user.name
-    h5=user.bio
+        p.profile__bio=user.bio
 
-    if loggedUser && loggedUser.id === user.id
-        span
-            a(href=routes.user+routes.editProfile) 프로필 수정
-        span
-            a(href=routes.user+routes.changePassword) 비밀번호 변경
+        .home-photos
+            .home-photos__column
+                each item in photos[0]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })
+            .home-photos__column
+                each item in photos[1]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })
+            .home-photos__column
+                each item in photos[2]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })

@@ -8,4 +8,4 @@ mixin photoBlock(photo = {})
                 | /
                 span 🖤
 
-        img.photoBlock__thumbnail(src=photo.fileUrl)
+        img.photoBlock__thumbnail(src=`/${photo.fileUrl}`)

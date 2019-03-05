@@ -1,6 +1,7 @@
 import passport from "passport";
 import User from "../models/User";
 import routes from "../routes";
+import { setGrid } from "../utils";
 
 export const getJoin = (req, res) => res.render("join", { page: "Join" });
 export const postJoin = async (req, res, next) => {
@@ -35,18 +36,19 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const me = (req, res) => {
-  res.render("profile", { page: "Profile", user: req.user });
-};
-
 export const profile = async (req, res) => {
   const {
     params: { id }
   } = req;
 
   try {
-    const user = await User.findById(id);
-    res.render("profile", { page: "Profile", user });
+    const user = await User.findById(id).populate("photos");
+
+    res.render("profile", {
+      page: "Profile",
+      user,
+      photos: setGrid(user.photos)
+    });
   } catch (e) {
     console.log(e);
     res.redirect(routes.home);

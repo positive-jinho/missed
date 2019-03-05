@@ -2,11 +2,33 @@ extends layouts/main
 include mixins/photoBlock
 
 block content
-    h3 검색결과
-
-    each item in photos
-        +photoBlock({
-            id:item.id,
-            title:item.title,
-            fileUrl:item.fileUrl
-        })
+    h3 '#{term}' 검색결과
+    
+    if photos[0].length !== 0
+        .home-photos
+            .home-photos__column
+                each item in photos[0]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })
+            .home-photos__column
+                each item in photos[1]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })
+            .home-photos__column
+                each item in photos[2]
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator:item.creator.name
+                    })
+    else
+        span 검색 결과가 없습니다. 😥

@@ -10,7 +10,6 @@ const USER = "/user";
 const PROFILE = "/:id";
 const EDIT_PROFILE = "/edit";
 const CHANGE_PASSWORD = "/change-password";
-const ME = "/me";
 
 // Photo
 const PHOTO = "/photo";
@@ -29,7 +28,6 @@ const routes = {
   profile: PROFILE,
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
-  me: ME,
   photo: PHOTO,
   photoDetail: id => {
     if (id) {

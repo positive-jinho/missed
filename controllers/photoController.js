@@ -1,32 +1,42 @@
 import routes from "../routes";
 import Photo from "../models/Photo";
+import { setGrid } from "../utils";
 
 export const home = async (req, res) => {
-  let gridPhotos = [[], [], []];
+  let photos;
 
   try {
-    const photos = await Photo.find()
+    photos = await Photo.find()
       .sort({ _id: -1 })
       .populate("creator");
-
-    let columns = 0;
-
-    photos.forEach(photo => {
-      gridPhotos[columns].push(photo);
-      columns++;
-
-      if (columns === 3) {
-        columns = 0;
-      }
-    });
   } catch (e) {
     console.log(e);
   }
 
-  res.render("home", { page: "Home", photos: gridPhotos });
+  res.render("home", { page: "Home", photos: setGrid(photos) });
 };
 
-export const search = (req, res) => res.render("search", { page: "Search" });
+export const search = async (req, res) => {
+  const {
+    query: { term }
+  } = req;
+
+  let photos = [];
+
+  try {
+    photos = await Photo.find({
+      title: { $regex: term, $options: "i" }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  console.log(setGrid(photos));
+  res.render("search", {
+    page: "Search",
+    photos: setGrid(photos),
+    term
+  });
+};
 
 export const photoDetail = async (req, res) => {
   const {

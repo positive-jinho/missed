@@ -3,13 +3,14 @@ header.header
         a(href=routes.home) MISSED
     
     .header__column.search
-        input(type="text", placeholder="검색")
+        form(method="get", action=routes.search)
+            input(type="text", placeholder="검색", name="term")
 
     .header__column
         ul
             if loggedUser
                 li
-                    a(href=routes.user+routes.me) #{loggedUser.name}
+                    a(href=routes.user+'/'+loggedUser.id) #{loggedUser.name}
                 li
                     a(href=routes.photo+routes.uploadPhoto) 올리기
                 li
