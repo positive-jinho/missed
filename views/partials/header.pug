@@ -1,6 +1,8 @@
 header.header
     .header__column.logo
-        a(href=routes.home) MISSED
+        a(href=routes.home)
+            i.fas.fa-camera-retro
+            |  MISSED
     
     .header__column.search
         form(method="get", action=routes.search)
@@ -10,9 +12,9 @@ header.header
         ul
             if loggedUser
                 li
-                    a(href=routes.user+'/'+loggedUser.id) #{loggedUser.name}
-                li
                     a(href=routes.photo+routes.uploadPhoto) 올리기
+                li
+                    a(href=routes.user+'/'+loggedUser.id) #{loggedUser.name}
                 li
                     a(href=routes.logout) 로그아웃
             else

@@ -1,4 +1,5 @@
 export const setGrid = photos => {
+  const COLUMN_SIZE = 3;
   let gridPhotos = [[], [], []];
   let columns = 0;
 
@@ -6,7 +7,7 @@ export const setGrid = photos => {
     gridPhotos[columns].push(photo);
     columns++;
 
-    if (columns === 3) {
+    if (columns === COLUMN_SIZE) {
       columns = 0;
     }
   });

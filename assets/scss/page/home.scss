@@ -1,37 +1,5 @@
-.home-photos {
-  display: flex;
-  max-width: 1300px;
-
-  .home-photos__column {
-    flex: 33.33%;
-    max-width: 33.33%;
-
-    img {
-      vertical-align: middle;
-      width: 100%;
-    }
-
-    .photoBlock {
-      margin: 10px 5px;
-      position: relative;
-
-      .photoBlock__info {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.3);
-        color: white;
-        width: 100%;
-        height: 100%;
-        z-index: 10;
-        display: none;
-      }
-
-      &:hover {
-        .photoBlock__info {
-          display: flex;
-          justify-content: flex-end;
-          align-content: flex-end;
-        }
-      }
-    }
-  }
+.handmaiden-container {
+  padding: 30px 0px;
+  text-align: center;
+  line-height: 1.5em;
 }

@@ -17,6 +17,6 @@ userRouter.post(routes.editProfile, multerUploadAvatar, postEditProfile);
 userRouter.get(routes.changePassword, getChangePassword);
 userRouter.post(routes.changePassword, postChangePassword);
 
-userRouter.get(routes.profile, profile);
+userRouter.get(routes.profile(), profile);
 
 export default userRouter;

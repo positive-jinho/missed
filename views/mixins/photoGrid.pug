@@ -1,0 +1,14 @@
+include ./photoBlock
+
+mixin photoGrid(photos = {})
+    .grid-photos
+        each photoColumn in photos
+            .grid-photos__column
+                each item in photoColumn
+                    +photoBlock({
+                        id:item.id,
+                        title:item.title,
+                        fileUrl:item.fileUrl,
+                        creator: item.creator.name,
+                        avatarUrl: item.creator.avatarUrl
+                    })

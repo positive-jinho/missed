@@ -69,7 +69,7 @@ export const postEditProfile = async (req, res) => {
       bio
     });
 
-    res.redirect(routes.user + routes.me);
+    res.redirect(routes.profile(req.user.id));
   } catch (e) {
     console.log(e);
     res.status(400);
