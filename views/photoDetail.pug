@@ -1,14 +1,20 @@
 extends layouts/main
 
 block content
-    .photo-detail
-        h2=photo.title
+    .photo-detail-container
         img(src=`/${photo.fileUrl}`)
-        h5
-            a(href=routes.user+'/'+photo.creator.id)=photo.creator.name
-        
-        if loggedUser && loggedUser.id === photo.creator.id
+
+        .photo-detail
+            h2=photo.title
+            img(src=`/${photo.creator.avatarUrl}`)
             span
-                a(href=routes.editPhoto(photo.id)) 수정
-            span
-                a(href=routes.deletePhoto(photo.id)) 삭제
+                a(href=routes.user+'/'+photo.creator.id)=photo.creator.name
+            
+            span 다운로드수 #{photo.downloadCnt}회
+            
+            if loggedUser && loggedUser.id === photo.creator.id
+                .photo-detail__menu
+                    a(href=routes.editPhoto(photo.id))
+                        Button ✏ 수정
+                    a(href=routes.deletePhoto(photo.id))
+                        Button ✖ 삭제

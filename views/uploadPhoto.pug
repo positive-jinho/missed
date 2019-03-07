@@ -3,7 +3,10 @@ extends layouts/main
 block content
     h3 올리기
 
-    form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
+    p 한글로 작성해주세요.
+
+    form.form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
         input(type="file", accept="image/*", name="photoFile")
         input(type="text", name="title", placeholder="작품 제목")
+        input(type="text", name="title", placeholder="태그들(,로 구분)")
         input(type="submit", value="올리기")

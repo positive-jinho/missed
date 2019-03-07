@@ -1,28 +1,20 @@
 .profile-container {
+  display: flex;
+  padding: 40px 0px;
+
   .profile__img {
     border-radius: 50%;
     width: 150px;
+    height: 150px;
   }
 
   .profile__name {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 24px;
   }
 
   .profile__bio {
     white-space: pre-line;
-  }
-
-  .profile__btn {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 12px;
-
-    &:first-child {
-      margin-right: 5px;
-    }
+    align-self: flex-end;
   }
 }

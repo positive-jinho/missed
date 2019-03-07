@@ -18,6 +18,11 @@ const UPLOAD_PHOTO = "/upload";
 const EDIT_PHOTO = "/:id/edit";
 const DELETE_PHOTO = "/:id/delete";
 
+// API
+const API = "/api";
+const LIKE = "/:id/like";
+const DOWNLOAD = "/:id/download";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -56,7 +61,10 @@ const routes = {
       return DELETE_PHOTO;
     }
   },
-  uploadPhoto: UPLOAD_PHOTO
+  uploadPhoto: UPLOAD_PHOTO,
+  api: API,
+  like: LIKE,
+  download: DOWNLOAD
 };
 
 export default routes;

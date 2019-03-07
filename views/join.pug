@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     h3 회원가입
-
+    
     form.form(method="post", action=routes.join)
         input(type="text", placeholder="이름", name="name")
         input(type="email", placeholder="이메일", name="email")

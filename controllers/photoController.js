@@ -26,7 +26,7 @@ export const search = async (req, res) => {
   try {
     photos = await Photo.find({
       title: { $regex: term, $options: "i" }
-    });
+    }).populate("creator");
   } catch (e) {
     console.log(e);
   }
@@ -111,5 +111,37 @@ export const deletePhoto = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.redirect(routes.home); // 실패 메세지 띄워야 함
+  }
+};
+
+export const postLike = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const photo = await Photo.findById(id);
+    photo.likeUsers.addToSet(req.user.id);
+    photo.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
+export const postDownload = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const photo = await Photo.findById(id);
+    photo.downloadCnt += 1;
+    photo.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
   }
 };

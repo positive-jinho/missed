@@ -5,10 +5,21 @@ mixin photoGrid(photos = {})
         each photoColumn in photos
             .grid-photos__column
                 each item in photoColumn
-                    +photoBlock({
-                        id:item.id,
-                        title:item.title,
-                        fileUrl:item.fileUrl,
-                        creator: item.creator.name,
-                        avatarUrl: item.creator.avatarUrl
-                    })
+                    if(item.creator.name !== undefined)
+                        +photoBlock({
+                            id:item.id,
+                            title:item.title,
+                            fileUrl:item.fileUrl,
+                            creator: item.creator.name,
+                            avatarUrl: item.creator.avatarUrl,
+                            likeUsers: item.likeUsers
+                        })
+                    else
+                        +photoBlock({
+                            id:item.id,
+                            title:item.title,
+                            fileUrl:item.fileUrl,
+                            creator: user.name,
+                            avatarUrl: user.avatarUrl,
+                            likeUsers: item.likeUsers
+                        })

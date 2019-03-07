@@ -13,6 +13,6 @@ block content
                 a(href=routes.user+routes.changePassword)
                     Button.profile__btn 🔐 비밀번호 변경
 
-        p.profile__bio=user.bio
+        .profile__bio=user.bio
 
-        +photoGrid(photos)
+    +photoGrid(photos)
