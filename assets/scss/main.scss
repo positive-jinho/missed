@@ -17,7 +17,8 @@ main {
   min-height: 70vh;
 }
 
-button {
+button,
+input[type="submit"] {
   color: white;
 
   background-color: rgba(0, 0, 0, 0.8);

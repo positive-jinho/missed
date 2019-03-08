@@ -6,7 +6,7 @@ header.header
     
     .header__column.search
         form(method="get", action=routes.search)
-            input(type="text", placeholder="검색", name="term")
+            input(type="text", placeholder="원하시는 키워드로 검색해보세요 !", name="term")
 
     .header__column
         ul
@@ -17,11 +17,11 @@ header.header
                 
             if loggedUser
                 li
-                    a(href=routes.photo+routes.uploadPhoto) 올리기
-                li
-                    a(href=routes.user+'/'+loggedUser.id) #{loggedUser.name}
+                    a(href=routes.user+'/'+loggedUser.id) 내 프로필
                 li
                     a(href=routes.logout) 로그아웃
+                li
+                    a.uploadBtn(href=routes.photo+routes.uploadPhoto) 업로드
             else
                 li
                     a(href=routes.login) 로그인

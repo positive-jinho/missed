@@ -2,15 +2,18 @@ extends layouts/main
 
 block content
     .photo-detail-container
+        .photo-detail__creator
+            h2=photo.title
+            img.photo-detail__profile(src=`/${photo.creator.avatarUrl}`)
+            a(href=routes.user+'/'+photo.creator.id)  #{photo.creator.name}
         img(src=`/${photo.fileUrl}`)
 
         .photo-detail
-            h2=photo.title
-            img(src=`/${photo.creator.avatarUrl}`)
-            span
-                a(href=routes.user+'/'+photo.creator.id)=photo.creator.name
-            
-            span 다운로드수 #{photo.downloadCnt}회
+            span 좋아요 #{photo.downloadCnt}회
+            span 다운로드 #{photo.downloadCnt}회
+            .tag-container
+                each tag in tags
+                    .tag=tag
             
             if loggedUser && loggedUser.id === photo.creator.id
                 .photo-detail__menu

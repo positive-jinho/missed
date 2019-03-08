@@ -1,5 +1,7 @@
 import routes from "../routes";
 import Photo from "../models/Photo";
+import Tag from "../models/Tag";
+import Like from "../models/Like";
 import { setGrid } from "../utils";
 
 export const home = async (req, res) => {
@@ -13,7 +15,8 @@ export const home = async (req, res) => {
     console.log(e);
   }
 
-  res.render("home", { page: "Home", photos: setGrid(photos) });
+  const grid = await setGrid(photos);
+  res.render("home", { page: "Home", photos: grid });
 };
 
 export const search = async (req, res) => {
@@ -30,10 +33,9 @@ export const search = async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-  console.log(setGrid(photos));
   res.render("search", {
     page: "Search",
-    photos: setGrid(photos),
+    photos: await setGrid(photos),
     term
   });
 };
@@ -45,7 +47,12 @@ export const photoDetail = async (req, res) => {
 
   try {
     const photo = await Photo.findById(id).populate("creator");
-    res.render("photoDetail", { page: "PhotoDetail", photo });
+    const tag = await Tag.findOne({ photo: id });
+    res.render("photoDetail", {
+      page: "PhotoDetail",
+      photo,
+      tags: tag.tag.split(",")
+    });
   } catch (e) {
     console.log(e);
     res.redirect(routes.home);
@@ -56,7 +63,7 @@ export const getUploadPhoto = (req, res) =>
   res.render("uploadPhoto", { page: "Upload Photo" });
 export const postUploadPhoto = async (req, res) => {
   const {
-    body: { title },
+    body: { title, tag },
     file: { path }
   } = req;
 
@@ -64,6 +71,11 @@ export const postUploadPhoto = async (req, res) => {
     fileUrl: path,
     title,
     creator: req.user.id
+  });
+
+  await Tag.create({
+    photo: newPhoto.id,
+    tag
   });
 
   req.user.photos.push(newPhoto.id);
@@ -119,9 +131,12 @@ export const postLike = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const photo = await Photo.findById(id);
-    photo.likeUsers.addToSet(req.user.id);
-    photo.save();
+    const like = await Like.findOne({ photo: id, creator: req.user.id });
+    if (like === null) {
+      await Like.create({ photo: id, creator: req.user.id });
+    } else {
+      await Like.findByIdAndDelete(like.id);
+    }
     res.status(200);
   } catch (error) {
     res.status(400);
