@@ -4,7 +4,7 @@
   z-index: 11;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   align-items: center;
   padding: 15px 25px;
   background-color: white;
@@ -20,7 +20,8 @@
       color: #353535;
     }
 
-    .uploadBtn {
+    .uploadBtn,
+    .registerBtn {
       background-color: #fa7268;
       color: white;
       padding: 5px 15px;

@@ -3,6 +3,7 @@ import Photo from "../models/Photo";
 import Tag from "../models/Tag";
 import Like from "../models/Like";
 import { setGrid } from "../utils";
+import imageSize from "image-size";
 
 export const home = async (req, res) => {
   let photos;
@@ -48,10 +49,16 @@ export const photoDetail = async (req, res) => {
   try {
     const photo = await Photo.findById(id).populate("creator");
     const tag = await Tag.findOne({ photo: id });
+    const like = await Like.find({ photo: id });
+
+    const dimensions = imageSize(photo.fileUrl);
+
     res.render("photoDetail", {
       page: "PhotoDetail",
       photo,
-      tags: tag.tag.split(",")
+      tags: tag.tag.split(","),
+      likeCnt: like.length,
+      dimensions
     });
   } catch (e) {
     console.log(e);

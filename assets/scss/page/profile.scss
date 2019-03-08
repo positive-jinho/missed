@@ -1,20 +1,36 @@
 .profile-container {
+  color: #353535;
   display: flex;
-  padding: 40px 0px;
+  max-width: 1300px;
+  padding: 40px 10px 20px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #ddd;
 
+  .profile__info {
+    padding: 10px 0px 10px 20px;
+    .photo-detail-info_title {
+    }
+
+    .profile__info-top {
+      display: flex;
+      align-items: center;
+
+      .profile__name {
+        font-weight: 600;
+        font-size: 24px;
+        margin-right: 10px;
+      }
+    }
+
+    .profile__bio {
+      margin-top: 10px;
+      white-space: pre-line;
+      line-height: 1.5em;
+    }
+  }
   .profile__img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
-  }
-
-  .profile__name {
-    font-weight: 600;
-    font-size: 24px;
-  }
-
-  .profile__bio {
-    white-space: pre-line;
-    align-self: flex-end;
   }
 }
