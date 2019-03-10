@@ -4,15 +4,17 @@ include mixins/photoGrid
 block content
     .profile-container
         img.profile__img(src=`/${user.avatarUrl}`)
-        span.profile__name=user.name
-        
-        if loggedUser && loggedUser.id === user.id
-            .profile__btn-container
-                a(href=routes.user+routes.editProfile) 
-                    Button.profile__btn ✏ 프로필 수정
-                a(href=routes.user+routes.changePassword)
-                    Button.profile__btn 🔐 비밀번호 변경
+        .profile__info
+            .profile__info-top
+                span.profile__name=user.name
 
-        .profile__bio=user.bio
+                if loggedUser && loggedUser.id === user.id
+                    .profile__btn-container
+                        a(href=routes.user+routes.editProfile) 
+                            Button.profile__btn ✏ 프로필 수정
+                        a(href=routes.user+routes.changePassword)
+                            Button.profile__btn 🔐 비밀번호 변경
+            
+            .profile__bio #{user.bio==="" ? "아직 자기소개가 없습니다." : user.bio}
 
     +photoGrid(photos)

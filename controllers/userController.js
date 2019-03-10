@@ -10,6 +10,7 @@ export const postJoin = async (req, res, next) => {
   } = req;
 
   if (password !== password2) {
+    req.flash("error", "Passwords don't match");
     res.status(400);
     res.render("join");
   } else {
@@ -28,11 +29,14 @@ export const postJoin = async (req, res, next) => {
 export const getLogin = (req, res) => res.render("login", { page: "Login" });
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
-  successRedirect: routes.home
+  successRedirect: routes.home,
+  successFlash: "Welcome",
+  failureFlash: "Can't log in. Check email and/or password"
 });
 
 export const logout = (req, res) => {
   req.logout();
+  req.flash("info", "안녕히가세요! 👋");
   res.redirect(routes.home);
 };
 
@@ -47,7 +51,7 @@ export const profile = async (req, res) => {
     res.render("profile", {
       page: "Profile",
       user,
-      photos: setGrid(user.photos)
+      photos: await setGrid(user.photos)
     });
   } catch (e) {
     console.log(e);

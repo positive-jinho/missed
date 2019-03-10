@@ -8,5 +8,5 @@ block content
     form.form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
         input(type="file", accept="image/*", name="photoFile")
         input(type="text", name="title", placeholder="작품 제목")
-        input(type="text", name="title", placeholder="태그들(,로 구분)")
+        input(type="text", name="tag", placeholder="태그들(,로 구분)")
         input(type="submit", value="올리기")

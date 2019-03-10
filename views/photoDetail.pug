@@ -4,17 +4,32 @@ block content
     .photo-detail-container
         img(src=`/${photo.fileUrl}`)
 
-        .photo-detail
+        .photo-detail__creator-container
             h2=photo.title
-            img(src=`/${photo.creator.avatarUrl}`)
-            span
-                a(href=routes.user+'/'+photo.creator.id)=photo.creator.name
-            
-            span 다운로드수 #{photo.downloadCnt}회
-            
-            if loggedUser && loggedUser.id === photo.creator.id
-                .photo-detail__menu
-                    a(href=routes.editPhoto(photo.id))
-                        Button ✏ 수정
-                    a(href=routes.deletePhoto(photo.id))
-                        Button ✖ 삭제
+            img.photo-detail__profile(src=`/${photo.creator.avatarUrl}`)
+            a.photo-detail__creator(href=routes.user+'/'+photo.creator.id)  #{photo.creator.name}
+        .photo-detail
+            .tag-container
+                each tag in tags
+                    .tag=tag
+            .photo-detail-info
+                span #{photo.createdAt.toISOString().split('T')[0].replace(/-/g,".")}
+                span
+                    i.fas.fa-eye
+                    | 0
+                span
+                    i.far.fa-heart.like(data-id=`/${photo.id}`)
+                    | #{likeCnt}
+                span
+                    i.fas.fa-file-download
+                    | #{photo.downloadCnt}
+
+                .photo-detail-info__right
+                    span 해상도 - #{`${dimensions.width} × ${dimensions.height}`}
+
+                if loggedUser && loggedUser.id === photo.creator.id
+                    .photo-detail__menu
+                        a(href=routes.editPhoto(photo.id))
+                            Button ✏ 수정
+                        a(href=routes.deletePhoto(photo.id))
+                            Button ✖ 삭제

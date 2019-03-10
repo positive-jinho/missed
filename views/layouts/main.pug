@@ -1,3 +1,5 @@
+include ../mixins/message
+
 <!DOCTYPE html>
 html(lang="kr")
     head
@@ -7,11 +9,24 @@ html(lang="kr")
         link(rel="stylesheet", href="/static/styles.css")
         title #{page} - #{siteName}
     body
-        include ../partials/header
+        if messages.error
+            +message({
+                type:'error',
+                text:messages.error
+            })
+        else if messages.info
+            +message({
+                type:'info',
+                text:messages.info
+            })
+        else if messages.success
+            +message({
+                type:'success',
+                text:messages.success
+            })
 
+        include ../partials/header
         main
             block content
-
         include ../partials/footer
-
         script(type="text/javascript", src="/static/main.js")
