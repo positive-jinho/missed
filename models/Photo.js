@@ -9,10 +9,6 @@ const photoSchema = new mongoose.Schema({
     type: String,
     required: "Title is required"
   },
-  tags: {
-    type: String,
-    required: "Tag is Required"
-  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -21,12 +17,6 @@ const photoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  likeUsers: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ],
   downloadCnt: {
     type: Number,
     default: 0
