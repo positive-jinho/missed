@@ -51,7 +51,6 @@ export const search = async (req, res) => {
     });
 
     photos = removeDuplicates(photos, "id");
-    console.log(photos);
   } catch (e) {
     console.log(e);
   }
@@ -69,9 +68,11 @@ export const photoDetail = async (req, res) => {
 
   try {
     const photo = await Photo.findById(id).populate("creator");
+    photo.views += 1;
+    photo.save();
+
     const tag = await Tag.findOne({ photo: id });
     const like = await Like.find({ photo: id });
-
     const dimensions = imageSize(photo.fileUrl);
 
     res.render("photoDetail", {

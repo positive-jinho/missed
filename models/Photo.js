@@ -20,6 +20,10 @@ const photoSchema = new mongoose.Schema({
   downloadCnt: {
     type: Number,
     default: 0
+  },
+  views: {
+    type: Number,
+    default: 0
   }
 });
 
