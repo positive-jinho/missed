@@ -43,15 +43,14 @@
         }
       }
 
-      .photo-detail__menu {
-        justify-self: flex-end;
-        margin-left: auto;
-      }
-
       .photo-detail-info__right {
         justify-self: flex-end;
         margin-left: auto;
       }
+    }
+
+    .photo-detail__menu {
+      margin-top: 20px;
     }
 
     .tag-container {
@@ -64,10 +63,10 @@
         border-radius: 5px;
         text-align: center;
         padding: 8px 15px;
+      }
 
-        &:not(:last-child) {
-          margin-right: 5px;
-        }
+      a:not(:last-child) {
+        margin-right: 5px;
       }
     }
   }

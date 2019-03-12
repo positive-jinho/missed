@@ -1,6 +1,6 @@
 extends layouts/main
-
 block content
+
     .photo-detail-container
         img(src=`/${photo.fileUrl}`)
 
@@ -11,7 +11,9 @@ block content
         .photo-detail
             .tag-container
                 each tag in tags
-                    .tag=tag
+                    a(href=`${routes.search}?term=${tag}`)
+                        .tag=tag
+
             .photo-detail-info
                 span #{photo.createdAt.toISOString().split('T')[0].replace(/-/g,".")}
                 span
@@ -27,9 +29,9 @@ block content
                 .photo-detail-info__right
                     span 해상도 - #{`${dimensions.width} × ${dimensions.height}`}
 
-                if loggedUser && loggedUser.id === photo.creator.id
-                    .photo-detail__menu
-                        a(href=routes.editPhoto(photo.id))
-                            Button ✏ 수정
-                        a(href=routes.deletePhoto(photo.id))
-                            Button ✖ 삭제
+            if loggedUser && loggedUser.id === photo.creator.id
+                .photo-detail__menu
+                    a(href=routes.editPhoto(photo.id))
+                        Button ✏ 수정
+                    a(href=routes.deletePhoto(photo.id))
+                        Button ✖ 삭제

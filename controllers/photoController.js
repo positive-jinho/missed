@@ -27,10 +27,31 @@ export const search = async (req, res) => {
 
   let photos = [];
 
+  const removeDuplicates = (myArr, prop) => {
+    return myArr.filter((obj, pos, arr) => {
+      return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+    });
+  };
+
   try {
-    photos = await Photo.find({
+    const findPhoto = await Photo.find({
       title: { $regex: term, $options: "i" }
     }).populate("creator");
+    const findTag = await Tag.find(
+      {
+        tag: { $regex: term, $options: "i" }
+      },
+      "photo"
+    ).populate({ path: "photo", populate: { path: "creator" } });
+
+    photos = findPhoto;
+
+    findTag.forEach(e => {
+      photos.push(e.photo);
+    });
+
+    photos = removeDuplicates(photos, "id");
+    console.log(photos);
   } catch (e) {
     console.log(e);
   }
