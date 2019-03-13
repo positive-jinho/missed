@@ -163,12 +163,15 @@ export const postLike = async (req, res) => {
     const like = await Like.findOne({ photo: id, creator: req.user.id });
     if (like === null) {
       await Like.create({ photo: id, creator: req.user.id });
+      req.flash("info", "좋아요 !");
     } else {
       await Like.findByIdAndDelete(like.id);
     }
     res.status(200);
   } catch (error) {
+    req.flash("error", "로그인이 필요합니다 !");
     res.status(400);
+    res.redirect(routes.home);
   } finally {
     res.end();
   }

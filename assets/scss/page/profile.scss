@@ -2,22 +2,19 @@
   color: #353535;
   display: flex;
   max-width: 1300px;
-  padding: 40px 10px 20px;
+  padding: 0px 10px 20px;
   margin-bottom: 40px;
-  border-bottom: 1px solid #ddd;
+  box-shadow: 0px 5px 20px -10px #ddd;
 
   .profile__info {
     padding: 10px 0px 10px 20px;
-    .photo-detail-info_title {
-    }
-
     .profile__info-top {
       display: flex;
       align-items: center;
 
       .profile__name {
         font-weight: 600;
-        font-size: 24px;
+        font-size: 28px;
         margin-right: 10px;
       }
     }
@@ -25,6 +22,7 @@
     .profile__bio {
       margin-top: 10px;
       white-space: pre-line;
+      font-size: 15px;
       line-height: 1.5em;
     }
   }

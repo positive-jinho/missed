@@ -1,15 +1,13 @@
 extends layouts/main
 
 block content
-    h3 로그인
+    .page-title 로그인
 
     form.form(method="post", action=routes.login)
         input(type="email", placeholder="이메일", name="email")
         input(type="password", placeholder="비밀번호", name="password")
         input(type='submit', value="로그인")
+        
+        include partials/socialBtns
 
-    include partials/socialBtns
-
-    .help
-        span 계정을 잊어버렸어요!
-        span 회원가입
+        .login-forgot 😥 계정을 잊어버렸어요

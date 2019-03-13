@@ -32,13 +32,32 @@ const config = {
             }
           },
           {
-            loader: "sass-loader"
+            loader: "resolve-url-loader"
+          },
+          {
+            loader: "sass-loader?sourceMap"
           }
         ])
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8000,
+              name: "img/[name].[ext]?[hash]"
+            }
+          }
+        ]
       }
     ]
   },
-  output: { path: OUTPUT_DIR, filename: "[name].js" },
+  output: {
+    path: OUTPUT_DIR,
+    publicPath: "/static/",
+    filename: "[name].js"
+  },
   plugins: [new ExtractCSS("styles.css")]
 };
 

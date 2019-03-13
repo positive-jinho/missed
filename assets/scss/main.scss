@@ -17,10 +17,19 @@ main {
   min-height: 70vh;
 }
 
-button,
-input[type="submit"] {
+.page-title {
+  padding: 40px 20px 20px;
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #353535;
+  border-bottom: 1px solid #bbb;
+}
+
+button.menu {
+  cursor: pointer;
   color: white;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: $buttonColor;
   border: none;
   padding: 5px 10px;
   border-radius: 5px;

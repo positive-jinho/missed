@@ -32,6 +32,6 @@ block content
             if loggedUser && loggedUser.id === photo.creator.id
                 .photo-detail__menu
                     a(href=routes.editPhoto(photo.id))
-                        Button ✏ 수정
+                        Button.menu ✏ 수정
                     a(href=routes.deletePhoto(photo.id))
-                        Button ✖ 삭제
+                        Button.menu ✖ 삭제
