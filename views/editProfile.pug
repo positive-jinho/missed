@@ -1,10 +1,12 @@
 extends layouts/main
 
 block content
-    h3 프로필 수정
+    .page-title 프로필 수정
 
     form.form(method="post", action=routes.user+routes.editProfile, enctype="multipart/form-data")
-        h5=loggedUser.name
-        input(type="file", accept="image/*", name="avatarFile")
-        textarea(name="bio")=loggedUser.bio
+        img.profile(src=`/${loggedUser.avatarUrl}`)
+        .profile-label
+            label(for="avatarFile") 사진 고르기
+        input(type="file", accept="image/*", name="avatarFile", id="avatarFile")
+        textarea(name="bio", placeholder="자신을 소개해주세요.")=loggedUser.bio
         input(type="submit", value="수정하기")

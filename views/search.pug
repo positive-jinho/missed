@@ -2,7 +2,7 @@ extends layouts/main
 include mixins/photoGrid
 
 block content
-    h3 '#{term}' 검색결과
+    .page-title '#{term}' 검색결과
     
     if photos[0].length !== 0
         +photoGrid(photos)

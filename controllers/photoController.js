@@ -120,7 +120,13 @@ export const getEditPhoto = async (req, res) => {
 
   try {
     const photo = await Photo.findById(id);
-    res.render("editPhoto", { page: "Edit Photo", photo });
+    const tag = await Tag.findOne({ photo: id });
+
+    res.render("editPhoto", {
+      page: "Edit Photo",
+      photo,
+      tag: tag.tag
+    });
   } catch (e) {
     console.log(e);
     res.redirect(routes.home);

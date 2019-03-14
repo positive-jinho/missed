@@ -2,7 +2,7 @@ extends layouts/main
 block content
 
     .photo-detail-container
-        img(src=`/${photo.fileUrl}`)
+        img(src=`/${photo.fileUrl}`, alt=tags.toString())
 
         .photo-detail__creator-container
             h2=photo.title

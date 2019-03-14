@@ -1,12 +1,13 @@
 extends layouts/main
 
 block content
-    .page-title 올리기
+    .page-title 업로드
 
-    p 한글로 작성해주세요.
+    .upload-photo-container
+        form.form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
+            input(type="file", accept="image/*", name="photoFile")
+            input(type="text", name="title", placeholder="작품 제목")
+            input(type="text", name="tag", placeholder="쉼표(,)로 태그를 구분해주세요. (예 - 동물,강아지,말티즈)")
+            input(type="submit", value="올리기")
 
-    form.form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
-        input(type="file", accept="image/*", name="photoFile")
-        input(type="text", name="title", placeholder="작품 제목")
-        input(type="text", name="tag", placeholder="태그들(,로 구분)")
-        input(type="submit", value="올리기")
+        span 🙏 검색 결과를 위해, <strong>'한글'</strong> 만 입력해주세요.
