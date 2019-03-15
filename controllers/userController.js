@@ -102,10 +102,7 @@ export const postChangePassword = async (req, res) => {
   }
 };
 
-export const kakaoLogin = passport.authenticate("kakao", {
-  successFlash: "Welcome",
-  failureFlash: "Can't log in at this time"
-});
+export const kakaoLogin = passport.authenticate("kakao");
 
 export const kakaoLoginCallback = async (_, __, profile, done) => {
   const {

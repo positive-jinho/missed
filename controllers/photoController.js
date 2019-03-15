@@ -76,7 +76,7 @@ export const photoDetail = async (req, res) => {
     const dimensions = imageSize(photo.fileUrl);
 
     res.render("photoDetail", {
-      page: "PhotoDetail",
+      page: photo.title,
       photo,
       tags: tag.tag.split(","),
       likeCnt: like.length,
@@ -166,18 +166,22 @@ export const postLike = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const like = await Like.findOne({ photo: id, creator: req.user.id });
-    if (like === null) {
-      await Like.create({ photo: id, creator: req.user.id });
-      req.flash("info", "좋아요 !");
+    if (req.user) {
+      const like = await Like.findOne({ photo: id, creator: req.user.id });
+      if (like === null) {
+        await Like.create({ photo: id, creator: req.user.id });
+        res.status(200).send({ message: "like" });
+      } else {
+        await Like.findByIdAndDelete(like.id);
+        res.status(200).send({
+          message: "already liked"
+        });
+      }
     } else {
-      await Like.findByIdAndDelete(like.id);
+      res.status(400).send({ message: "not logged in" });
     }
-    res.status(200);
   } catch (error) {
-    req.flash("error", "로그인이 필요합니다 !");
     res.status(400);
-    res.redirect(routes.home);
   } finally {
     res.end();
   }

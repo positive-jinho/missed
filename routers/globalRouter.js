@@ -28,7 +28,11 @@ globalRouter.get(routes.logout, logout);
 globalRouter.get(routes.kakaoLogin, kakaoLogin);
 globalRouter.get(
   routes.kakaoCallback,
-  passport.authenticate("kakao", { failureRedirect: "/login" }),
+  passport.authenticate("kakao", {
+    failureRedirect: "/login",
+    successFlash: { type: "info", message: "😊 어서오세요 !" },
+    failureFlash: "지금은 로그인 할 수 없습니다."
+  }),
   postKakaoLogin
 );
 

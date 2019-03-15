@@ -4,19 +4,41 @@ const downloadBtns = document.getElementsByClassName("fa-file-download");
 function like(e) {
   e.preventDefault();
   const element = e.target;
-  const isActive = element.classList.contains("like-active");
-
-  element.classList.toggle("far");
-  element.classList.toggle("fas");
-  element.classList.toggle("like-active");
 
   const photoId = element.dataset.id;
+
   fetch(`/api${photoId}/like`, {
     method: "POST"
-  });
+  })
+    .then(res => res.json())
+    .then(res => res.message)
+    .then(message => {
+      if (message !== "not logged in") {
+        element.classList.toggle("far");
+        element.classList.toggle("fas");
+        element.classList.toggle("like-active");
 
-  const cnt = parseInt(element.previousSibling.textContent);
-  element.previousSibling.textContent = cnt + 1;
+        const cnt = parseInt(element.previousSibling.textContent);
+        const div = document.createElement("div");
+
+        if (message === "like") {
+          element.previousSibling.textContent = cnt + 1;
+          div.className = "flash-message__container info";
+          div.textContent = "👍 좋아요 !";
+        } else {
+          element.previousSibling.textContent = cnt - 1;
+          div.className = "flash-message__container info";
+          div.textContent = "😅 잘못 눌렀네요";
+        }
+
+        document.body.appendChild(div);
+      } else {
+        const div = document.createElement("div");
+        div.className = "flash-message__container error";
+        div.textContent = "🙏 로그인 해주세요 !";
+        document.body.appendChild(div);
+      }
+    });
 }
 
 function download(e) {

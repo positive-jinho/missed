@@ -26,16 +26,19 @@ main {
   border-bottom: 1px solid #bbb;
 }
 
-button.menu {
+button {
   cursor: pointer;
-  color: white;
-  background-color: $buttonColor;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 12px;
 
-  &:first-child {
-    margin-right: 5px;
+  &.menu {
+    color: white;
+    background-color: $buttonColor;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+
+    &:first-child {
+      margin-right: 5px;
+    }
   }
 }

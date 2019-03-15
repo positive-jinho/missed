@@ -25,14 +25,11 @@
   text-align: center;
   animation: flashAnimation 3s ease-in-out forwards;
   z-index: 13;
+  color: white;
+  font-weight: 600;
 
   &.error,
   &.info {
     background-color: $livingCoral;
-  }
-
-  .flash-message__text {
-    color: white;
-    font-weight: 600;
   }
 }
