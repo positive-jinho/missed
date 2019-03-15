@@ -7,12 +7,11 @@ const userSchema = new mongoose.Schema({
     required: "User Name is Required"
   },
   email: {
-    type: String,
-    required: "User Email is Required"
+    type: String
   },
   avatarUrl: {
     type: String,
-    default: ""
+    default: null
   },
   bio: {
     type: String,
@@ -27,7 +26,8 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Photo"
     }
-  ]
+  ],
+  kakaoId: Number
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: "email" });

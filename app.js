@@ -21,11 +21,11 @@ const app = express();
 
 const CookieStore = MongoStore(session);
 
+app.use(helmet());
 app.set("view engine", "pug");
 app.use("/static", express.static("static"));
 app.use("/uploads", express.static("uploads"));
 
-app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,10 +39,10 @@ app.use(
     store: new CookieStore({ mongooseConnection: mongoose.connection })
   })
 );
+app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(flash());
 
 app.use(localsMiddleware);
 

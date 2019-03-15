@@ -4,7 +4,7 @@ include mixins/photoGrid
 block content
     .page-title 작가 프로필
     .profile-container
-        img.profile__img(src=`/${user.avatarUrl}`)
+        img.profile__img(src=`/${user.avatarUrl ? user.avatarUrl : "static/img/profile.jpg" }`)
         .profile__info
             .profile__info-top
                 span.profile__name=user.name

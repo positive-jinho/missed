@@ -5,6 +5,9 @@ const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
 
+const KAKAO_LOGIN = "/kakao";
+const KAKAO_CALLBACK = "/oauth";
+
 // User
 const USER = "/user";
 const PROFILE = "/:id";
@@ -64,7 +67,9 @@ const routes = {
   uploadPhoto: UPLOAD_PHOTO,
   api: API,
   like: LIKE,
-  download: DOWNLOAD
+  download: DOWNLOAD,
+  kakaoLogin: KAKAO_LOGIN,
+  kakaoCallback: KAKAO_CALLBACK
 };
 
 export default routes;

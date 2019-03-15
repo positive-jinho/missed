@@ -4,7 +4,7 @@ block content
     .page-title 프로필 수정
 
     form.form(method="post", action=routes.user+routes.editProfile, enctype="multipart/form-data")
-        img.profile(src=`/${loggedUser.avatarUrl}`)
+        img.profile(src=`/${loggedUser.avatarUrl ? loggedUser.avatarUrl : "static/img/profile.jpg"}`)
         .profile-label
             label(for="avatarFile") 사진 고르기
         input(type="file", accept="image/*", name="avatarFile", id="avatarFile")

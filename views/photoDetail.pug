@@ -6,7 +6,7 @@ block content
 
         .photo-detail__creator-container
             h2=photo.title
-            img.photo-detail__profile(src=`/${photo.creator.avatarUrl}`)
+            img.photo-detail__profile(src=`/${photo.creator.avatarUrl ? photo.creator.avatarUrl : "static/img/profile.jpg"}`)
             a.photo-detail__creator(href=routes.user+'/'+photo.creator.id)  #{photo.creator.name}
         .photo-detail
             .tag-container

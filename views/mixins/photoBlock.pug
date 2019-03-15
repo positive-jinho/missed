@@ -5,7 +5,7 @@ mixin photoBlock(photo = {})
                 h2.photoBlock__info__title=photo.title
 
                 .photoBlock__info__creator-container
-                    img.photoBlock__info__avatar(src=`/${photo.avatarUrl}`)
+                    img.photoBlock__info__avatar(src=`/${photo.avatarUrl ? photo.avatarUrl : "static/img/profile.jpg"}`)
                     span.photoBlock__info__creator #{photo.creator}
 
                     .photoBlock__info__creator-container__menu

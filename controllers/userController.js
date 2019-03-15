@@ -30,7 +30,7 @@ export const getLogin = (req, res) => res.render("login", { page: "Login" });
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home,
-  successFlash: "Welcome",
+  successFlash: { type: "info", message: "😊 어서오세요 !" },
   failureFlash: "Can't log in. Check email and/or password"
 });
 
@@ -100,4 +100,40 @@ export const postChangePassword = async (req, res) => {
     console.log(e);
     res.redirect(routes.user + routes.changePassword);
   }
+};
+
+export const kakaoLogin = passport.authenticate("kakao", {
+  successFlash: "Welcome",
+  failureFlash: "Can't log in at this time"
+});
+
+export const kakaoLoginCallback = async (_, __, profile, done) => {
+  const {
+    _json: {
+      id,
+      properties: { profile_image, nickname }
+    }
+  } = profile;
+
+  try {
+    const user = await User.findOne({ kakaoId: id });
+
+    if (user) {
+      return done(null, user);
+    }
+
+    const newUser = await User.create({
+      name: nickname,
+      avatarUrl: profile_image,
+      kakaoId: id
+    });
+
+    return done(null, newUser);
+  } catch (error) {
+    return done(error);
+  }
+};
+
+export const postKakaoLogin = (req, res) => {
+  res.redirect(routes.home);
 };
