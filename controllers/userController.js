@@ -134,3 +134,17 @@ export const kakaoLoginCallback = async (_, __, profile, done) => {
 export const postKakaoLogin = (req, res) => {
   res.redirect(routes.home);
 };
+
+export const deleteProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    user.avatarUrl = null;
+    user.save();
+
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};

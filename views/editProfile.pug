@@ -8,7 +8,7 @@ block content
             img.profile#profile(src=`/${loggedUser.avatarUrl ? loggedUser.avatarUrl : "static/img/profile.jpg"}`)
             label(for="avatarFile") 사진 고르기
             if loggedUser.avatarUrl
-                span 프로필 사진 삭제
+                .profile-delete#profile-delete ❌
             input(type="file", accept="image/*", name="avatarFile", id="avatarFile")
             textarea(name="bio", placeholder="자신을 소개해주세요.")=loggedUser.bio
             input(type="submit", value="수정하기")

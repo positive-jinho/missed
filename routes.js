@@ -25,6 +25,7 @@ const DELETE_PHOTO = "/:id/delete";
 const API = "/api";
 const LIKE = "/:id/like";
 const DOWNLOAD = "/:id/download";
+const DELETE_PROFILE = "/delete-profile";
 
 const routes = {
   home: HOME,
@@ -68,6 +69,7 @@ const routes = {
   api: API,
   like: LIKE,
   download: DOWNLOAD,
+  deleteProfile: DELETE_PROFILE,
   kakaoLogin: KAKAO_LOGIN,
   kakaoCallback: KAKAO_CALLBACK
 };
