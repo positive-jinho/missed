@@ -16,7 +16,9 @@
       position: relative;
 
       .photoBlock__info {
-        display: none;
+        display: flex;
+        transition: opacity 0.2s ease-in-out;
+        opacity: 0;
         flex-direction: column;
         position: absolute;
         background-color: rgba(0, 0, 0, 0.3);
@@ -74,7 +76,7 @@
 
       &:hover {
         .photoBlock__info {
-          display: flex;
+          opacity: 1;
         }
       }
     }

@@ -5,7 +5,9 @@ block content
 
     .upload-photo-container
         form.form(method="post", action=routes.photo+routes.uploadPhoto, enctype="multipart/form-data")
-            input(type="file", accept="image/*", name="photoFile")
+            label#upload-label(for="photoFile") 클릭해서 멋진 사진을 올려주세요 !
+            img#sample(src="")
+            input(type="file", accept="image/*", name="photoFile", id="photoFile")
             input(type="text", name="title", placeholder="작품 제목")
             input(type="text", name="tag", placeholder="쉼표(,)로 태그를 구분해주세요. (예 - 동물,강아지,말티즈)")
             input(type="submit", value="올리기")
