@@ -1,0 +1,8 @@
+extends layouts/main
+
+block content
+    .page-title 계정 찾기
+
+    form.form(method="post", id="authForm", action=routes.forgot)
+        input(type="email", placeholder="가입한 이메일을 입력해주세요.", name="email")
+        input(type='submit', value="새 비밀번호 전송")

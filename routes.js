@@ -26,6 +26,8 @@ const API = "/api";
 const LIKE = "/:id/like";
 const DOWNLOAD = "/:id/download";
 const DELETE_PROFILE = "/delete-profile";
+const FORGOT = "/forgot";
+const SENT = "/sent";
 
 const routes = {
   home: HOME,
@@ -71,7 +73,9 @@ const routes = {
   download: DOWNLOAD,
   deleteProfile: DELETE_PROFILE,
   kakaoLogin: KAKAO_LOGIN,
-  kakaoCallback: KAKAO_CALLBACK
+  kakaoCallback: KAKAO_CALLBACK,
+  forgot: FORGOT,
+  sent: SENT
 };
 
 export default routes;

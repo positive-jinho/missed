@@ -3,6 +3,10 @@ import User from "../models/User";
 import routes from "../routes";
 import { setGrid } from "../utils";
 
+import NodeMailer from "nodemailer";
+import SendGrid from "nodemailer-sendgrid-transport";
+import RandomKey from "randomkey";
+
 export const getJoin = (req, res) => res.render("join", { page: "Join" });
 export const postJoin = async (req, res, next) => {
   const {
@@ -147,4 +151,54 @@ export const deleteProfile = async (req, res) => {
   } finally {
     res.end();
   }
+};
+
+export const getForgotUser = (req, res) =>
+  res.render("forgot", { page: "계정 찾기" });
+
+export const postForgotUser = (req, res) => {
+  const {
+    body: { email }
+  } = req;
+
+  const options = {
+    auth: {
+      api_user: process.env.SENDGRID_USER,
+      api_key: process.env.SENDGRID_PASSWORD
+    }
+  };
+
+  const client = NodeMailer.createTransport(SendGrid(options));
+  const newPassword = RandomKey(6);
+  const mail = {
+    from: "MISSED <no-reply@missed.com>",
+    to: email,
+    subject: "🔒 MISSED 새로운 비밀번호입니다.",
+    html: `🔑 새 비밀번호는 <b>${newPassword}</b> 입니다.`
+  };
+
+  client.sendMail(mail, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      User.findOne({ email }, (err, user) => {
+        if (err) throw err;
+
+        user.setPassword(newPassword, errr => {
+          if (errr) console.log(errr);
+          else {
+            console.log(user);
+            user.save(e => {
+              if (e) console.log(e);
+              else res.redirect(routes.sent);
+            });
+          }
+        });
+      });
+    }
+  });
+};
+
+export const sent = (req, res) => {
+  res.render("sent", { page: "계정 찾기" });
 };

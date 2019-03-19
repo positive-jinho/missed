@@ -9,7 +9,10 @@ import {
   logout,
   postLogin,
   kakaoLogin,
-  postKakaoLogin
+  postKakaoLogin,
+  getForgotUser,
+  postForgotUser,
+  sent
 } from "../controllers/userController";
 
 const globalRouter = express.Router();
@@ -35,5 +38,10 @@ globalRouter.get(
   }),
   postKakaoLogin
 );
+
+globalRouter.get(routes.forgot, getForgotUser);
+globalRouter.post(routes.forgot, postForgotUser);
+
+globalRouter.get(routes.sent, sent);
 
 export default globalRouter;

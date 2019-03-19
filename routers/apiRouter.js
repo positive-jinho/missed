@@ -8,4 +8,5 @@ const apiRouter = express.Router();
 apiRouter.post(routes.like, postLike);
 apiRouter.post(routes.download, postDownload);
 apiRouter.post(routes.deleteProfile, deleteProfile);
+
 export default apiRouter;
