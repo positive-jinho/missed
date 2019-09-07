@@ -10,7 +10,7 @@ mixin photoBlock(photo = {})
 
                     .photoBlock__info__creator-container__menu
                         span.likeCnt=photo.like
-                        i.far.fa-heart.like(data-id=`/${photo.id}`)
-                        i.fas.fa-file-download(data-id=`/${photo.id}`,data-src=`/${photo.fileUrl}`)
+                        i.fas.fa-heart.like(data-id=`/${photo.id}`, title="좋아요 😍")
+                        i.fas.fa-file-download(data-id=`/${photo.id}`,data-src=`/${photo.fileUrl}`, title="다운로드")
 
         img.photoBlock__thumbnail(src=`/${photo.fileUrl}`)

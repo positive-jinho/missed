@@ -5,7 +5,9 @@ import {
   getEditProfile,
   getChangePassword,
   postEditProfile,
-  postChangePassword
+  postChangePassword,
+  getLeave,
+  postLeave
 } from "../controllers/userController";
 import { multerUploadAvatar } from "../middlewares";
 
@@ -13,6 +15,9 @@ const userRouter = express.Router();
 
 userRouter.get(routes.editProfile, getEditProfile);
 userRouter.post(routes.editProfile, multerUploadAvatar, postEditProfile);
+
+userRouter.get(routes.leave, getLeave);
+userRouter.post(routes.leave, postLeave);
 
 userRouter.get(routes.changePassword, getChangePassword);
 userRouter.post(routes.changePassword, postChangePassword);

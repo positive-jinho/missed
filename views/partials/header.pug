@@ -2,7 +2,7 @@ header.header
     .header__column.logo
         a(href=routes.home)
             i.fas.fa-camera-retro
-            |  MISSED
+            |MISSED
     
     .header__column.search
         form(method="get", action=routes.search)
@@ -11,9 +11,11 @@ header.header
     .header__column
         ul
             li 
-                a(href="") 컬렉션
+                a(href="")
+                    i.fas.fa-th-large
             li
-                a(href="") 둘러보기
+                a(href="")
+                    i.fas.fa-folder
                 
             if loggedUser
                 li

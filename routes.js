@@ -13,6 +13,7 @@ const USER = "/user";
 const PROFILE = "/:id";
 const EDIT_PROFILE = "/edit";
 const CHANGE_PASSWORD = "/change-password";
+const LEAVE = "/leave";
 
 // Photo
 const PHOTO = "/photo";
@@ -75,7 +76,8 @@ const routes = {
   kakaoLogin: KAKAO_LOGIN,
   kakaoCallback: KAKAO_CALLBACK,
   forgot: FORGOT,
-  sent: SENT
+  sent: SENT,
+  leave: LEAVE
 };
 
 export default routes;

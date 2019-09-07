@@ -12,3 +12,5 @@ block content
             input(type="file", accept="image/*", name="avatarFile", id="avatarFile")
             textarea(name="bio", placeholder="자신을 소개해주세요.")=loggedUser.bio
             input(type="submit", value="수정하기")
+
+            a.link(href=routes.user+routes.leave) 회원탈퇴

@@ -170,18 +170,16 @@ export const postLike = async (req, res) => {
       const like = await Like.findOne({ photo: id, creator: req.user.id });
       if (like === null) {
         await Like.create({ photo: id, creator: req.user.id });
-        res.status(200).send({ message: "like" });
+        res.status(201);
       } else {
         await Like.findByIdAndDelete(like.id);
-        res.status(200).send({
-          message: "already liked"
-        });
+        res.status(204);
       }
     } else {
-      res.status(400).send({ message: "not logged in" });
+      res.status(400);
     }
   } catch (error) {
-    res.status(400);
+    res.status(404);
   } finally {
     res.end();
   }

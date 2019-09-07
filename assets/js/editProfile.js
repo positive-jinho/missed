@@ -22,7 +22,7 @@ function update(e) {
 
 function init() {
   input.addEventListener("change", update);
-  deleteBtn.addEventListener("click", deleteProfile);
+  deleteBtn.addEventListener("click", deleteProfile); // FIXME: 여기 고쳐야 된다. 프로필 이미지 없을 때 콘솔에서 오류남.
 }
 
 if (input) {

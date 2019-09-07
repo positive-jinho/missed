@@ -202,3 +202,12 @@ export const postForgotUser = (req, res) => {
 export const sent = (req, res) => {
   res.render("sent", { page: "계정 찾기" });
 };
+
+export const getLeave = (req, res) => res.render("leave", { page: "회원탈퇴" });
+
+export const postLeave = async (req, res) => {
+  await User.findByIdAndDelete(req.user.id);
+
+  req.flash("info", "감사했습니다 😭");
+  res.redirect(routes.home);
+};

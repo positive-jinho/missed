@@ -1,13 +1,13 @@
 .photo-detail-container {
-  margin: 20px 0px 60px;
+  padding: 25px 0px;
   color: #353535;
 
   img {
-    max-height: 85vh;
+    max-height: 82vh;
   }
 
   .photo-detail__creator-container {
-    padding: 0px 5px 0px;
+    padding: 0px 2px 0px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ddd;
@@ -36,11 +36,19 @@
       align-items: center;
 
       span:not(:last-child) {
-        margin-right: 15px;
-
+        margin-right: 20px;
         i {
           margin-right: 5px;
+
+          &.like {
+            color: orangered;
+          }
         }
+      }
+
+      span:nth-child(3),
+      span:nth-child(4) {
+        cursor: pointer;
       }
 
       .photo-detail-info__right {
@@ -55,7 +63,7 @@
 
     .tag-container {
       display: flex;
-      margin: 20px 0px;
+      margin: 25px 0px;
 
       .tag {
         color: #353535;

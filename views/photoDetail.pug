@@ -19,10 +19,10 @@ block content
                 span(title="조회수")
                     i.fas.fa-eye
                     | #{photo.views}
-                span
-                    i.far.fa-heart.like(data-id=`/${photo.id}`)
+                span(title="좋아요 😍")
+                    i.fas.fa-heart.like(data-id=`/${photo.id}`)
                     | #{likeCnt}
-                span
+                span(title="다운로드")
                     i.fas.fa-file-download
                     | #{photo.downloadCnt}
 

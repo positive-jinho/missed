@@ -42,3 +42,15 @@ button {
     }
   }
 }
+
+a,
+li {
+  color: inherit;
+}
+
+.link {
+  margin-top: 20px;
+  text-decoration: underline;
+  color: #c32728;
+  font-weight: 600;
+}
